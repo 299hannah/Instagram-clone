@@ -2,7 +2,6 @@ from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
-# import uuid
 from django.urls import reverse
 
 
@@ -24,12 +23,12 @@ class Profile(models.Model):
 	# favorites = models.ManyToManyField(Post)
     picture = models.ImageField(upload_to='profile_pic', blank=True, null=True)
 
-    # def create_user_prof(sender, instance, created, **kwargs):
-    #     if created:
-    #         Profile.objects.create(user=instance)
+    def create_user_prof(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
 
-    # def save_user_prof(sender, instance, **kwargs):
-    #     instance.profile.save()
+    def save_user_prof(sender, instance, **kwargs):
+        instance.profile.save()
 
     def __str__(self):
         return self.first_name
@@ -37,12 +36,11 @@ class Profile(models.Model):
     class Meta:
         ordering = ['first_name']
 
-    # post_save.connect(create_user_prof, sender=User)
-    # post_save.connect(save_user_prof, sender=User)
+    post_save.connect(create_user_prof, sender=User)
+    post_save.connect(save_user_prof, sender=User)
 
 
 class Post(models.Model):
-    # id =models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=60)
     description = models.TextField()
     location = models.TextField()
