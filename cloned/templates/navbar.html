@@ -1,0 +1,93 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>     -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    <title></title>
+<body>
+    <header>
+        <div class='navigation'>
+            <div class='instalogo'>
+                <!-- <a class='' href='/'><i class="fab fa-instagram"></i></a> -->
+                <a class='line' href='/'></a>
+                <a href='/'>Instagram</a>
+            </div>
+            <div class='searching_bar'>
+                <input type='text' placeholder='search'>
+                <a class='search' href=''><i class="fas fa-search"></i></a>
+            </div>
+           
+           
+              
+            <div class='Fa-icons'>
+                <a class='home' href='/'><i class="fa fa-home" aria-hidden="true"></i>
+                <a class='telegram' href='/'><i class="fab fa-telegram-plane"></i>
+                <a class='add' href='/'><i class="far fa-plus-square"></i>
+                <a class='explore' href='/'><i class="far fa-compass"></i></a>
+                <a class='likes' href='/'><i class="far fa-heart"></i></a>
+                <a class='profile' href='/'><i class="far fa-user"></i></a>
+
+              
+                <!-- <i class="fa fa-search-plus" aria-hidden="true"></i>
+                <i class="far fa-bell"></i>
+                <i class="fas fa-bell"></i> -->
+                <!-- <ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle btn btn-default" data-toggle="dropdown" role="button"
+                            aria-expanded="false">Account <span class="caret"></span></a>
+                            
+                            <ul class="dropdown-menu" role="menu">
+
+                            <a href="/">Home</a>
+                            
+                            <li>
+                                <a href="/">Update profile</a>
+                            </li>
+                            <li>
+                                <a href="/">Change password</a>
+                            </li>
+                            <li>
+                                <a href="/">Logout</a>
+                            </li>
+                        </ul>
+
+                    </li> -->
+                <!-- </ul> -->
+
+                <!-- <div class="navbar-dropdown">
+                    <a class="navbar-item">
+                      Change Password
+                    </a>
+                    <a class="navbar-item">
+                      Contact
+                    </a>
+                    <a class="navbar-item">
+                        Report an issue
+                    </a>
+                    <hr class="navbar-divider">
+                    <a class="navbar-item">
+                        Logout
+                    </a>
+                  </div>
+            -->
+        </div>
+        </div>
+    </header>
+    <div class='content_container'>
+        {%  block content %}
+        {% endblock %}
+    </div>
+   
+</body>
+
+</html>
