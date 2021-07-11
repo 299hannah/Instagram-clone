@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container mt-5 " id="insta">
+{% for post_item in post_items %}
+   <div class="card cadi">
+      <div class="card_header " id="top1">
+         <div class="prof_img">
+            
+         </div>
+         <div class="post_info">
+            <div class="post_name">
+               {{post_item.user}}
+            </div>
+            <div class="post_location">
+               {{post_item.title}}
+            </div>
+         </div>
+         <div class="options">
+            <i class="fas fa-ellipsis-h"></i>
+         </div>
+      </div>
+      <div class="post_image">
+         <img src="{{post_item.image.url}}" alt="">
+      </div>
+      <div class="engagement">
+         <a href=""><i class="far fa-heart"></i></a>
+         <a href=""><i class="far fa-comment"></i></a>
+         <a href=""><i class="fab fa-telegram-plane"></i></a>
+         <a href=""><i class="far fa-bookmark"></i></a>
+      </div>
+      <div class="likes">
+         <a href="">{{post_item.likes}}</a>
+      </div>
+      <div class="captionMess">
+         <a href=""><h2>{{post_item.user}}</h2></a>
+         <span><p>{{post_item.message}}</p></span>
+      </div>
+      <div class="time">
+         {{post_item.pub_date | timesince}} ago
+      </div>
+   </div>
+
+{% endfor %}
+</div>
+{% endblock %}
