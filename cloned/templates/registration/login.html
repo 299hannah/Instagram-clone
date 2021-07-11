@@ -1,0 +1,71 @@
+{%extends "registaration/base.html"%}
+{%load bootstrap3%}
+{%load static%}
+
+{%block content%}
+    <div id="wrapper">
+        <div class="container">
+            {% if form.errors %}
+            <p> Password or Username is incorrect </p>
+          {% endif %}
+            <div class="phone-app-demo">
+                <!-- <div class="loginImage"> -->
+                    <img src="https://cdn.dribbble.com/users/346687/screenshots/4098741/instagram_timeline.gif" alt="">
+                <!-- </div> -->
+            </div>
+            <div class="form-data">
+                {% csrf_token %}
+
+                <form action="">
+                    <div class="logo">
+                        <h1>Instagram</h1>
+                    </div>
+                    <input type="text" placeholder="Phone number, username, or email">
+                    <input type="text" placeholder="Password">
+                    <button class="form-btn" type="submit">Log in</button>
+                    <span class="has-separator">Or</span>
+                    <a href="#" class="facebook-login">
+                        <i class="fab fa-facebook"></i> Log in with Facebook
+                    </a>
+                    <a class="password-reset" href="#">Forgot password?</a>
+                </form>
+                <div class="sign-up">
+                    Don't an account? <a href="#">Sign up</a>
+                </div>
+                <div class="get-the-app">
+                    <span>Get the app</span>
+                    <div class="badge">
+                        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png"
+                            alt="android App">
+                        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png"
+                            alt="ios app">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <nav class="footer-nav">
+                    <ul> 
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">API</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Top Accounts</a></li>
+                        <li><a href="#">Hashtags</a></li>
+                        <li><a href="#">Locations</a></li>
+                        <li><a href="#">English</a></li>
+                    </ul>
+                </nav>
+                <div class="copyright-notice">
+                    &copy; 2021 Instagram from Facebook
+                </div>
+            </div>
+        </footer>
+    </div>
+
+{%endblock%}
