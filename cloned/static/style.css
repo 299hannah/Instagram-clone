@@ -16,6 +16,10 @@ html {
           box-sizing: border-box;
 }
 
+h1 {
+  font-family: 'Grand Hotel' , cursive;
+}
+
 /*Smartphone image*/
 img {
   width: 100%;
@@ -72,13 +76,22 @@ body {
 
 /*smartphone image*/
 .phone-app-demo {
-  height: 61.8rem;
+  height: 60rem;
   background: no-repeat;
   -webkit-box-flex: 5;
       -ms-flex: 5;
           flex: 5;
   padding-left: .2rem;
+  height: 60rem;
+  width: 65%;
   background-color: whitesmoke;
+}
+
+.phone-app-demo img {
+  height: 90%;
+  width: 80%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 /*form styling*/
@@ -282,9 +295,10 @@ footer .container1 {
 }
 
 /*responsive styling*/
-@media (max-width: 900px) {
+@media (max-width: 1080px) {
   .phone-app-demo {
     display: none;
+    width: 50%;
   }
   .form-data {
     margin: 0 auto;
@@ -461,5 +475,106 @@ header {
   margin: 0;
   border: 0 solid #000;
   border-radius: 50%;
+}
+
+.post_info {
+  display: inline-block;
+  padding-left: 14px;
+}
+
+.post_user1 {
+  font-size: 14px;
+  color: #111;
+  padding: 0;
+  margin: 0;
+  font-weight: 600;
+}
+
+.post_location {
+  font-size: 12px;
+  color: gray;
+  padding: 0;
+  margin: 0;
+}
+
+.options {
+  font-size: 15px;
+  float: right;
+  display: inline-block;
+  margin: 4px;
+  padding: 5px;
+  color: #a0a0a0;
+}
+
+.post_image {
+  width: 100%;
+  height: 614px;
+}
+
+.post_image img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.engagement {
+  display: inline-block;
+  width: 100%;
+  margin: 4px 0px 0px;
+  padding: 0px 16px;
+}
+
+.engagement a {
+  padding: 7px;
+  font-size: 25px;
+  color: #758595;
+  font-weight: 600;
+}
+
+.fa-bookmark {
+  float: right;
+  margin-right: 25px;
+}
+
+.likes a {
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #111;
+  margin: 0px 0px 8px;
+  padding: 0px 31px;
+}
+
+.captionMess {
+  display: inline-block;
+  width: 100%;
+  padding: 0px 16px;
+}
+
+.captionMess a {
+  font-size: 10px;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  display: inline-block;
+  padding-left: 5px;
+  margin-left: -5px;
+  padding-right: 5px;
+}
+
+.captionMess span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.time {
+  font-size: 10px;
+  font-weight: 300;
+  color: #111;
+  padding: 0px 16px;
 }
 /*# sourceMappingURL=style.css.map */
