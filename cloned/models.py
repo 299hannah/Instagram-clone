@@ -5,12 +5,24 @@ from django.db.models.signals import post_save
 from django.urls import reverse
 
 
+class Post(models.Model):
+    # postid=models
+    title = models.CharField(max_length=60)
+    description = models.TextField()
+    location = models.TextField()
+    pub_date =models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(upload_to = 'insta/', blank=True)
+    # video=
+    message=models.TextField(max_length=500)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    # likes = models.IntegerField()
+    likes = models.ManyToManyField(User, related_name='blogpost_like')
 
-# Create your models here.
+   
 
-# def user_directory_path(instance,filename):
-#     #this fle will be uploaded to MEDIA_ROOT /user()/filename
-#     return 'user_{0}/{1}'.format(instance.user.id,filename)
+    def __str__(self):
+        return str(self.pub_date)
+
 
 class Profile(models.Model):
     first_name = models.CharField(max_length=30)
@@ -20,7 +32,7 @@ class Profile(models.Model):
     url = models.CharField(max_length=80, null=True, blank=True)
     profile_info = models.TextField(max_length=150, null=True, blank=True)
     created = models.DateField(auto_now_add=True)
-	# favorites = models.ManyToManyField(Post)
+    favorites = models.ManyToManyField(Post)
     picture = models.ImageField(upload_to='profile_pic', blank=True, null=True)
 
     def create_user_prof(sender, instance, created, **kwargs):
@@ -38,23 +50,6 @@ class Profile(models.Model):
 
     post_save.connect(create_user_prof, sender=User)
     post_save.connect(save_user_prof, sender=User)
-
-
-class Post(models.Model):
-    title = models.CharField(max_length=60)
-    description = models.TextField()
-    location = models.TextField()
-    pub_date =models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to = 'insta/', blank=True)
-    # video=
-    message=models.TextField(max_length=500)
-    user=models.ForeignKey(User,on_delete=models.CASCADE)
-    likes = models.IntegerField()
-
-   
-
-    def __str__(self):
-        return str(self.pub_date)
 
 class tags(models.Model):
     name=models.CharField(max_length = 30)
@@ -82,7 +77,4 @@ class Stream(models.Model):
             stream.save()
  
 post_save.connect(Stream.add_post, sender=Post)
-
-
-
-
+ 
