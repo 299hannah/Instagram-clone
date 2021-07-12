@@ -1,36 +1,42 @@
-{%extends "registaration/base.html"%}
+{%extends "registration/base.html"%}
 {%load bootstrap3%}
 {%load static%}
 
 {%block content%}
     <div id="wrapper">
         <div class="container1">
-            {% if form.errors %}
-            <p> Password or Username is incorrect </p>
-          {% endif %}
+        
             <div class="phone-app-demo">
                 <!-- <div class="loginImage"> -->
                     <img src="https://cdn.dribbble.com/users/346687/screenshots/4098741/instagram_timeline.gif" alt="">
                 <!-- </div> -->
             </div>
             <div class="form-data">
-                {% csrf_token %}
 
-                <form action="">
+                <form action="" method="POST">
+                    {% csrf_token %}
+
                     <div class="logo">
                         <h1>Instagram</h1>
                     </div>
-                    <input type="text" placeholder="Phone number, username, or email">
-                    <input type="text" placeholder="Password">
-                    <button class="form-btn" type="submit">Log in</button>
+                    <input type="text" placeholder="Phone number, username, or email" class="form-control" >
+                    <input type="text" placeholder="Password" class="form-control">
+
+                    <button class="form-btn" type="submit"><a href="{%url 'index'%}">Log in</a></button>
                     <span class="has-separator">Or</span>
-                    <a href="#" class="facebook-login">
-                        <i class="fab fa-facebook"></i> Log in with Facebook
+                    <a href="https://web.facebook.com/instagram/?_rdc=1&_rdr" class="facebook-login">
+                        <i class="fab fa-facebook">
+
+                        </i> Log in with Facebook
                     </a>
                     <a class="password-reset" href="#">Forgot password?</a>
                 </form>
+
+                {% if form.errors %}
+                <p> Password or Username is incorrect </p>
+              {% endif %}
                 <div class="sign-up">
-                    Don't an account? <a href="#">Sign up</a>
+                    Don't have an account? <a href="{%url 'register'%}">Sign up</a>
                 </div>
                 <div class="get-the-app">
                     <span>Get the app</span>
