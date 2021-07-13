@@ -3,6 +3,8 @@ import datetime as dt
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.urls import reverse
+from django.db import models
+from cloudinary.models import CloudinaryField
 
 
 class Post(models.Model):
@@ -11,12 +13,12 @@ class Post(models.Model):
     description = models.TextField()
     location = models.TextField()
     pub_date =models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(upload_to = 'insta/', blank=True)
+    image = CloudinaryField('image')    
     # video=
     message=models.TextField(max_length=500)
     user=models.ForeignKey(User,on_delete=models.CASCADE)
-    # likes = models.IntegerField()
-    likes = models.ManyToManyField(User, related_name='blogpost_like')
+    likes = models.IntegerField()
+    # likes = models.ManyToManyField(User, related_name='blogpost_like')
 
    
 
@@ -32,7 +34,7 @@ class Profile(models.Model):
     url = models.CharField(max_length=80, null=True, blank=True)
     profile_info = models.TextField(max_length=150, null=True, blank=True)
     created = models.DateField(auto_now_add=True)
-    favorites = models.ManyToManyField(Post)
+    # favorites = models.ManyToManyField(Post)
     picture = models.ImageField(upload_to='profile_pic', blank=True, null=True)
 
     def create_user_prof(sender, instance, created, **kwargs):
