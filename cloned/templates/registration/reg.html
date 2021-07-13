@@ -1,36 +1,46 @@
 {%extends "registration/base.html"%} 
 {% block content %}
+
     <div id="wrapper">
         <div class="container1">
            
             <div class="form-data">
-                {% if form.errors %}
-                <p> Some Information Might be Incorrect </p>
-              {% endif %}
-                <form action="">
+            
+                <form action="" method="POST">
+                    {% csrf_token %}
                     <div class="logo">
 
                         <h1>Instagram</h1>
                         <p>Sign up to see photos and videos from your friends.</p>
                     </div>
                     <button class="form-btn" type="submit">Log in with Facebook</button>
-                    {% csrf_token %}
-
                     <span class="separator">Or</span>
+                    {% if form.errors %}
+                    <p> Some Information Might be Incorrect </p>
+                  {% endif %}
+                  <hr>
 
 
-                    <input type="text" placeholder="Mobile number or email">
-                    <input type="text" placeholder="Full Name">
-                    <input type="text" placeholder="Username">
+<p>Email</p>
+                    {{form.email}}
 
 
-                    <input type="text" placeholder="Password">
+   <p>Username</p>                 
+                    {{form.username}}
+
+<p>Password</p>
+                    {{form.password1}} 
+<p>Re Enter password</p> 
+                    {{form.password2}}  
+
                     <button class="form-btn" type="submit">Sign up</button>
                     <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
                 </form>
                 <div class="sign-up">
-                    Don't an account? <a href="{{url 'login.html'}}">Sign up</a>
+                    Have  an account? <a href="{% url 'login'%}">Log In</a>
                 </div>
+
+                
                 <div class="get-the-app">
                     <span>Get the app</span>
                     <div class="badge">
@@ -71,4 +81,21 @@
         </footer>
     </div>
 
+   
+
 {% endblock %}
+<script>
+    var form_fields = document.getElementByIdTagName('input')
+    form_fields[1].placeholder = 'Username'
+    form_fields[2].placeholder = 'Email'
+    form_fields[3].placeholder = 'Enter Password '
+    form_fields[4].placeholder = 'Re Rnter password'
+
+    for (var field in form_fields){
+        form_fields[field].className == 'form-control'
+    }
+
+
+
+
+    </script>
