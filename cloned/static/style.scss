@@ -5,29 +5,14 @@ $textcolor:#fff;
 $color:#f7f7f7;
 
 /*Html  styling*/
-*,
-*::before,
-*::after{
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
-}
 
-html
-{
-  font-size: 15px;
-  box-sizing: border-box;
-}
+
 h1{
   font-family:  'Grand Hotel' , cursive;
+  font-size: 50px;
+
 }
-/*Smartphone image*/
-img
-{
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-}
+
 
 /*link styling*/
 a
@@ -35,12 +20,6 @@ a
   text-decoration: none;
 }
 
-/*Logo styling*/
-h1
-{
-  font-family: 'Roboto', sans-serif;
-  font-size: 40px;
-}
 
 /*body background color*/
 body
@@ -275,7 +254,6 @@ footer
 footer .container1
 {
   display: flex;
-  justify-content: space-between;
   font-weight: bold;
   font-size: 1.3rem;
   flex-wrap: wrap;
@@ -304,84 +282,25 @@ ul li
   color: #999999;
 }
 
-/*responsive styling*/
-@media (max-width: 1080px)
-{
-  .phone-app-demo{
-    display: none;
-    width: 50%;
-  }
 
-  .form-data
-  {
-    margin: 0 auto;
-  }
-
-  #wrapper > .container1
-  {
-    padding: 0;
-  }
-
-  footer .container1
-  {
-    padding: 0 2rem;
-    justify-content: center;
-  }
-
-  .footer-nav ul
-  {
-    justify-content: center;
-  }
-
-  .footer-nav ul li
-  {
-    margin-bottom: 1rem;
-  }
-}
-
-@media (max-width: 450px)
-{
-  #wrapper
-  {
-    padding-top: 0;
-
-  }
-  .form-data form
-  {
-    background-color: transparent;
-    border: none;
-    padding: 0 2rem;
-  }
-  .sign-up
-  {
-    background-color: transparent;
-    border: none;
-    margin: 4rem 0;
-  }
-  footer
-  {
-    padding-bottom: 2rem;
-  }
-}
 // navigation bar
 
 header{
-  background: #fafafa;
+  background: #f7f7f7;
   border-bottom: 1px solid #ccc;
   position: fixed;
-  left: 0;
-  top: 0;
+  padding-top: 20px ;
   width: 100%;
 }
+
 .navigation{
   display: flex;
   flex-direction: row;
   text-align: center;
   justify-content: center;
-  padding: 26px 20px;
-  flex-wrap: wrap;
   a{
-    color: #111;
+    color: rgb(58, 57, 57);
+    text-decoration: none;
 
   }
 }
@@ -390,10 +309,9 @@ header{
   flex-direction: row;
   justify-content: flex-start;
   width: 30%;
-  font-family: 'grand-hotel';
+  font-family: 'Grand Hotel';
   a{
-    font-size: 25px;
-    padding-left:10px;
+    font-size: 30px;
   }
 
 }
@@ -412,7 +330,8 @@ header{
   a{
     padding-left: 30px;
     font-size: 25px;
-    font-weight: lighter;
+    // font-weight: lighter;
+
   }
 
 }
@@ -437,7 +356,13 @@ header{
 
 }
 #insta{
-  margin-top: 200px;
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  top: 100px;
+  z-index: -1000;
+
   img{
     padding: 1px;
   }
@@ -450,13 +375,16 @@ header{
   width: 100%;
   top: 83px;
   left: 0px;
+
 }
 
 .cadi{
+
   background-color: #fff;
   margin: 0 auto;
   width:614px;
   height: auto;
+  z-index: -1000;
   border: .8px solid #ccc;
   border-radius: 4px;
   margin-bottom: 60px;

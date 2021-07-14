@@ -1,41 +1,14 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
 @import url(https://fonts.googleapis.com/css?family=Grand+Hotel:regular);
 /*Html  styling*/
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
-}
-
-html {
-  font-size: 15px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
 h1 {
   font-family: 'Grand Hotel' , cursive;
-}
-
-/*Smartphone image*/
-img {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
+  font-size: 50px;
 }
 
 /*link styling*/
 a {
   text-decoration: none;
-}
-
-/*Logo styling*/
-h1 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 40px;
 }
 
 /*body background color*/
@@ -262,9 +235,6 @@ footer .container1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   font-weight: bold;
   font-size: 1.3rem;
   -ms-flex-wrap: wrap;
@@ -294,59 +264,11 @@ footer .container1 {
   color: #999999;
 }
 
-/*responsive styling*/
-@media (max-width: 1080px) {
-  .phone-app-demo {
-    display: none;
-    width: 50%;
-  }
-  .form-data {
-    margin: 0 auto;
-  }
-  #wrapper > .container1 {
-    padding: 0;
-  }
-  footer .container1 {
-    padding: 0 2rem;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  .footer-nav ul {
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  .footer-nav ul li {
-    margin-bottom: 1rem;
-  }
-}
-
-@media (max-width: 450px) {
-  #wrapper {
-    padding-top: 0;
-  }
-  .form-data form {
-    background-color: transparent;
-    border: none;
-    padding: 0 2rem;
-  }
-  .sign-up {
-    background-color: transparent;
-    border: none;
-    margin: 4rem 0;
-  }
-  footer {
-    padding-bottom: 2rem;
-  }
-}
-
 header {
-  background: #fafafa;
+  background: #f7f7f7;
   border-bottom: 1px solid #ccc;
   position: fixed;
-  left: 0;
-  top: 0;
+  padding-top: 20px;
   width: 100%;
 }
 
@@ -362,13 +284,11 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding: 26px 20px;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 
 .navigation a {
-  color: #111;
+  color: #3a3939;
+  text-decoration: none;
 }
 
 .instalogo {
@@ -383,12 +303,11 @@ header {
       -ms-flex-pack: start;
           justify-content: flex-start;
   width: 30%;
-  font-family: 'grand-hotel';
+  font-family: 'Grand Hotel';
 }
 
 .instalogo a {
-  font-size: 25px;
-  padding-left: 10px;
+  font-size: 30px;
 }
 
 .Fa-icons {
@@ -404,7 +323,6 @@ header {
 .Fa-icons a {
   padding-left: 30px;
   font-size: 25px;
-  font-weight: lighter;
 }
 
 .searching_bar {
@@ -432,7 +350,12 @@ header {
 }
 
 #insta {
-  margin-top: 200px;
+  position: absolute;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  top: 100px;
+  z-index: -1000;
 }
 
 #insta img {
@@ -452,6 +375,7 @@ header {
   margin: 0 auto;
   width: 614px;
   height: auto;
+  z-index: -1000;
   border: .8px solid #ccc;
   border-radius: 4px;
   margin-bottom: 60px;
@@ -578,84 +502,3 @@ header {
   padding: 0px 16px;
 }
 /*# sourceMappingURL=style.css.map */
-
-
-#myImg:hover {opacity: 0.7;}
-
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-
-/* Modal Content (image) */
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-}
-
-/* Caption of Modal Image */
-#caption {
-  margin: auto;
-  display: block;
-  width: 80%;
-  max-width: 700px;
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
-  height: 150px;
-}
-
-/* Add Animation */
-.modal-content, #caption {  
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.6s;
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
-
-@-webkit-keyframes zoom {
-  from {-webkit-transform:scale(0)} 
-  to {-webkit-transform:scale(1)}
-}
-
-@keyframes zoom {
-  from {transform:scale(0)} 
-  to {transform:scale(1)}
-}
-
-/* The Close Button */
-.close {
-  position: absolute;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 100% Image Width on Smaller Screens */
-@media only screen and (max-width: 700px){
-  .modal-content {
-    width: 100%;
-  }
-}
