@@ -10,9 +10,16 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 from pathlib import Path
+cloudinary.config( 
+  cloud_name = "notknowntouser", 
+  api_key = "135496514213861", 
+  api_secret = "Chbu1VMgsyQsaM8iwt6g2W1JRJM" 
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,9 +47,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cloned',
-    
     'insta',
     'bootstrap3',
+    'cloudinary',
     
 ]
 
@@ -128,6 +135,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
@@ -138,3 +147,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+LOGIN_REDIRECT_URL = 'index'
