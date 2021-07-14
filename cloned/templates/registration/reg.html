@@ -1,60 +1,60 @@
-{%extends "registration/base.html"%} 
+{%extends "registration/base.html"%}
 {% block content %}
 
-    <div id="wrapper">
-        <div class="container1">
-           
-            <div class="form-data">
-            
-                <form action="" method="POST">
-                    {% csrf_token %}
-                    <div class="logo">
+<div id="wrapper">
+    <div class="container1">
 
-                        <h1>Instagram</h1>
-                        <p>Sign up to see photos and videos from your friends.</p>
-                    </div>
-                    <button class="form-btn" type="submit">Log in with Facebook</button>
-                    <span class="separator">Or</span>
-                    {% if form.errors %}
-                    <p> Some Information Might be Incorrect </p>
-                  {% endif %}
-                  <hr>
+        <div class="form-data">
 
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="logo">
 
-<p>Email</p>
-                    {{form.email}}
-
-
-   <p>Username</p>                 
-                    {{form.username}}
-
-<p>Password</p>
-                    {{form.password1}} 
-<p>Re Enter password</p> 
-                    {{form.password2}}  
-
-                    <button class="form-btn" type="submit">Sign up</button>
-                    <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
-                </form>
-                <div class="sign-up">
-                    Have  an account? <a href="{% url 'login'%}">Log In</a>
+                    <h1>Instagram</h1>
+                    <p>Sign up to see photos and videos from your friends.</p>
                 </div>
+                <button class="form-btn" type="submit">Log in with Facebook</button>
+                <span class="separator">Or</span>
+                {% if form.errors %}
+                <p> Some Information Might be Incorrect </p>
+                {% endif %}
+                <hr>
 
-                
-                <div class="get-the-app">
-                    <span>Get the app</span>
-                    <div class="badge">
-                        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png"
-                            alt="android App">
-                        <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png"
-                            alt="ios app">
-                    </div>
+
+                <p>Email</p>
+                {{form.email}}
+
+
+                <p>Username</p>
+                {{form.username}}
+
+                <p>Password</p>
+                {{form.password1}}
+                <p>Re Enter password</p>
+                {{form.password2}}
+
+                <button class="form-btn" type="submit">Sign up</button>
+                <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+            </form>
+            <div class="sign-up">
+                Have an account? <a href="{% url 'login'%}">Log In</a>
+            </div>
+
+
+            <div class="get-the-app">
+                <span>Get the app</span>
+                <div class="badge">
+                    <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png"
+                        alt="android App">
+                    <img src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png"
+                        alt="ios app">
                 </div>
             </div>
         </div>
+    </div>
 
-        <footer>
-            <div class="container">
+    <footer>
+        <div class="container">
             <div class="container1">
 
 
@@ -76,12 +76,12 @@
                 <div class="copyright-notice">
                     &copy; 2021 Instagram from Facebook
                 </div>
-                </div>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
+</div>
 
-   
+
 
 {% endblock %}
 <script>
@@ -91,11 +91,7 @@
     form_fields[3].placeholder = 'Enter Password '
     form_fields[4].placeholder = 'Re Rnter password'
 
-    for (var field in form_fields){
+    for (var field in form_fields) {
         form_fields[field].className == 'form-control'
     }
-
-
-
-
-    </script>
+</script>
