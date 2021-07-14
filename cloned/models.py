@@ -1,7 +1,6 @@
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
 from django.urls import reverse
 from django.db import models
 from cloudinary.models import CloudinaryField
@@ -27,15 +26,12 @@ class Post(models.Model):
 
 
 class Profile(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
+
     email = models.EmailField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    url = models.CharField(max_length=80, null=True, blank=True)
     profile_info = models.TextField(max_length=150, null=True, blank=True)
     created = models.DateField(auto_now_add=True)
-    # favorites = models.ManyToManyField(Post)
-    picture = models.ImageField(upload_to='profile_pic', blank=True, null=True)
+    picture = CloudinaryField('image')    
 
     def create_user_prof(sender, instance, created, **kwargs):
         if created:
@@ -45,13 +41,13 @@ class Profile(models.Model):
         instance.profile.save()
 
     def __str__(self):
-        return self.first_name
+        return str(self.user)
 
     class Meta:
-        ordering = ['first_name']
+        ordering = ['user']
 
-    post_save.connect(create_user_prof, sender=User)
-    post_save.connect(save_user_prof, sender=User)
+    # post_save.connect(create_user_prof, sender=User)
+    # post_save.connect(save_user_prof, sender=User)
 
 class tags(models.Model):
     name=models.CharField(max_length = 30)
@@ -59,24 +55,37 @@ class tags(models.Model):
     def __str__(self):
         return self.name
 
+
+
+class Comments(models.Model):
+    comment = models.CharField(max_length=100)
+    post=models.ForeignKey(Post,related_name='comments',on_delete=models.CASCADE ,null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='comments')
+    created = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return f'{self.comment} Post'
+    
+    def save_comment(self):
+        self.save()
+    
+    def delete_comment(self):
+        self.delete()
+    
+    @classmethod
+    def filter_comments_by_post_id(cls, id):
+        comments = Comments.objects.filter(post_id=id)
+        return comments
+    
+
+    class Meta:
+        ordering = ["pk"]
+
+
+
 class Follow(models.Model):
     follower = models.ForeignKey(User, on_delete=models.CASCADE,related_name='follower')
     following = models.ForeignKey(User, on_delete=models.CASCADE,related_name='following')
 
-class Stream(models.Model):
-    following = models.ForeignKey(User, on_delete=models.CASCADE, related_name='Stream_following')
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    pub_date =models.DateTimeField()
 
 
-    def add_post(sender, instance, *args, **kwargs):
-        post = instance
-        user = post.user
-        followers = Follow.objects.all().filter(following=user)
-        for follower in followers:
-            stream =Stream(post=post, user=follower, date=post.pub_date, following=user)
-            stream.save()
- 
-post_save.connect(Stream.add_post, sender=Post)
- 
