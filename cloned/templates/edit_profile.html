@@ -1,8 +1,10 @@
+{% extends "base.html" %}
 
 {% load static %}
         
 {% block content %}
-
+<br><br><br><br><br><br>
+<div class="container " >
     <div class="card">
     <div class="card-content">
     <form method="post" enctype="multipart/form-data" action="" role="form">
@@ -36,13 +38,16 @@
       </div>
       <div class="field">
       <p class="control">
+        <a href="{% url 'profile'%}">
         <button type="submit" value="profile" class="button is-success">
           Update
         </button>
+        </a>
       </p>
     </div>
     </form>
   </div>
+</div>
 </div>
 
 {% endblock %}
