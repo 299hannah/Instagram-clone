@@ -24,7 +24,6 @@ This is an Instagram Clone website made with Django. A user can post, comment an
 ### Getting the code
 
 1. clone repository
-   https://github.com/MugeraH/instagram-clone.git
 2. Move to the folder and install requirements
    cd instagram_clone
    pip install -r requirements.txt
