@@ -112,25 +112,21 @@ def NewPost(request):
 
 
 
-def follow(request,id):
-    if request.method == 'GET':
-        user_follow=User.objects.get(pk=id)
-        follow_user=Follow(follower=request.user, followed=user_follow)
-        follow_user.save()
-        return redirect('user_profile' ,username=user_follow.username)
-    
-def unfollow(request,id):
-    if request.method=='GET':
-        user_unfollow=User.objects.get(pk=id)
-        unfollow_user=Follow.objects.filter(follower=request.user,followed=user_unfollow)
-        unfollow_user.delete()
-        return redirect('user_profile' ,username=user_unfollow.username)
-
 
 
 
 def profile(request):
+    current_user = request.user
+    user = User.objects.get(username=current_user.username)
+    profile = Profile.objects.get(user=current_user)
+    # user = User.objects.get(username=username)
+
+    # print('this is', user)
+    # follow = Follow.objects.filter(follower_id = user.id)
+
+       
     if request.method == 'POST':
+      
         u_form = UpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST,request.FILES,instance=request.user.profile)
         if u_form.is_valid() and p_form.is_valid():
@@ -141,35 +137,50 @@ def profile(request):
     else:
         u_form = UpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-    user_posts = Post.objects.filter(user=request.user).order_by('-pub_date')
     posts = Post.objects.filter(user=request.user).order_by('-pub_date')
+    # posts = Post.objects.filter(user = user.id)
+
+    print (posts)
     context = {
         'u_form' : u_form,
         'p_form' : p_form,
-        'user_posts' : user_posts,
         'posts' : posts,
+        'user':user,
+        'profile':profile,
     }
     return render(request, 'profile.html', context)
 
 
 
+# def search_results(request):
+#     if 'profile' in request.GET and request.GET["profile"]:
+#         search_term = request.GET.get("profile")
+#         searched_profiles = Profile.search_by_location(search_term)
+#         message = f"{search_term}"
+
+#         return render (request, 'search.html',{"message":message,"profiles": searched_profiles})
+
+#     else:
+#         message = "You haven't searched for any term"
+#         return render(request, 'search.html',{"message":message})
 
 
 
 
-def UserProfile(request):
-    current_user = request.user
-    user = User.objects.get(username=current_user)
-    selected_user = current_user
-    if selected_user == User:
-        return redirect('profile',username=request.user.username)
+def UserProfile(request, id):
+    user = User.objects.get(id=id)
+    # print('this is' , user)
+    selected_user = user
+    if selected_user == request.user:
+        return redirect('profile', id=request.user.id)
 
     posts = Post.objects.filter(user = selected_user.id)
+
     follow = Follow.objects.filter(follower_id = selected_user.id)
     
     profile=Profile.objects.filter(user=selected_user.id)
       
-    followers = Follow.objects.filter(following=user)
+    followers = Follow.objects.filter(followed=user.id)
    
     follow_status = False
     for follower in followers:
@@ -182,13 +193,27 @@ def UserProfile(request):
     ctx = {
         "posts":posts,
         "profile":profile,
-        "current_user":current_user,
+       
         'selected_user':selected_user,
         'followers': followers,
         'follow_status': follow_status
         }
    
     return render(request, 'user_profile.html',ctx)
+
+def follow(request,id):
+    if request.method == 'GET':
+        user_follow=User.objects.get(pk=id)
+        follow_user=Follow(follower=request.user, followed=user_follow)
+        follow_user.save()
+        return redirect('user_profile' ,id=user_follow.id)
+    
+def unfollow(request,id):
+    if request.method=='GET':
+        user_unfollow=User.objects.get(pk=id)
+        unfollow_user=Follow.objects.filter(follower=request.user,followed=user_unfollow)
+        unfollow_user.delete()
+        return redirect('user_profile' ,id=user_unfollow.id)
 
 
 

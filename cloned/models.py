@@ -41,10 +41,15 @@ class Profile(models.Model):
         instance.profile.save()
 
     def __str__(self):
-        return str(self.user)
+        return str(self.user.username)
 
     class Meta:
         ordering = ['user']
+
+    # @classmethod
+    # def search_by_title(cls,search_term):
+    #     user = cls.objects.filter(title__icontains=search_term)
+    #     return user
 
     # post_save.connect(create_user_prof, sender=User)
     # post_save.connect(save_user_prof, sender=User)
@@ -83,9 +88,11 @@ class Comments(models.Model):
 
 
 
+
 class Follow(models.Model):
-    follower = models.ForeignKey(User, on_delete=models.CASCADE,related_name='follower')
-    following = models.ForeignKey(User, on_delete=models.CASCADE,related_name='following')
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
+    followed = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followers')
 
-
+    def __str__(self):
+        return f'{self.follower} Follow'
 
