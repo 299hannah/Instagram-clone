@@ -1,5 +1,4 @@
 {%extends "registration/base.html"%}
-{%load bootstrap3%}
 {%load static%}
 
 {%block content%}
@@ -13,16 +12,18 @@
             </div>
             <div class="form-data">
 
-                <form action="" method="POST">
+                <form action="/accounts/login/" method="POST">
                     {% csrf_token %}
 
                     <div class="logo">
                         <h1>Instagram</h1>
                     </div>
-                    <input type="text" placeholder="Phone number, username, or email" class="form-control" >
-                    <input type="text" placeholder="Password" class="form-control">
+                    {{form.username}}
+                    {{form.password}}
+                    <!-- <input type="text" placeholder="Phone number, username, or email" class="form-control" > -->
+                    <!-- <input type="text" placeholder="Password" class="form-control"> -->
 
-                    <button class="form-btn" type="submit"><a href="{%url 'index'%}">Log in</a></button>
+                    <button class="form-btn" type="submit">Log in</button>
                     <span class="has-separator">Or</span>
                     <a href="https://web.facebook.com/instagram/?_rdc=1&_rdr" class="facebook-login">
                         <i class="fab fa-facebook">
