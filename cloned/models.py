@@ -24,14 +24,22 @@ class Post(models.Model):
     def __str__(self):
         return str(self.pub_date)
 
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
+
+    
+
 
 class Profile(models.Model):
-
+    nick_name=models.CharField(max_length=50, null=True, blank=True)
     email = models.EmailField()
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_info = models.TextField(max_length=150, null=True, blank=True)
     created = models.DateField(auto_now_add=True)
-    picture = CloudinaryField('image')    
+    picture = CloudinaryField('picture')    
 
     def create_user_prof(sender, instance, created, **kwargs):
         if created:
@@ -46,10 +54,10 @@ class Profile(models.Model):
     class Meta:
         ordering = ['user']
 
-    # @classmethod
-    # def search_by_title(cls,search_term):
-    #     user = cls.objects.filter(title__icontains=search_term)
-    #     return user
+    @classmethod
+    def search_by_user(cls,search_term):
+        user = cls.objects.filter(user__username__icontains=search_term).all()
+        return user
 
     # post_save.connect(create_user_prof, sender=User)
     # post_save.connect(save_user_prof, sender=User)

@@ -1,0 +1,48 @@
+
+{% load static %}
+        
+{% block content %}
+
+    <div class="card">
+    <div class="card-content">
+    <form method="post" enctype="multipart/form-data" action="" role="form">
+      {% csrf_token %}
+    <h3 class="title is-3">Edit Profile</h3>
+          <div class="field">
+              <label >Choose your image</label>
+              <div >
+                  <img src="" alt="">
+                {{ form.picture }}
+              </div>
+          </div>
+
+          <div class="field">
+            <label>Nickname</label>
+            <div class="control">
+              {{ form.nick_name }}
+            </div>
+        </div>
+       
+        
+      
+          <div class="field">
+              <label>Bio</label>
+              <div class="control">
+                {{ form.profile_info }}
+              </div>
+          </div>
+      <div class="row">
+       
+      </div>
+      <div class="field">
+      <p class="control">
+        <button type="submit" value="profile" class="button is-success">
+          Update
+        </button>
+      </p>
+    </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

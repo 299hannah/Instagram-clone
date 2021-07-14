@@ -18,7 +18,10 @@ urlpatterns = [
     path('profile/',views.profile,name = 'profile'),
     path('follow/<int:id>',views.follow, name='follow'),
     path('unfollow/<int:id>',views.unfollow, name='unfollow'),
-    # path('search/', views.search_results, name='search_results'),
+    path('search/', views.search_results, name='search_results'),
+    path('profile/edit', views.EditProfile, name='edit-profile'),
+    path('add_comment/<int:post_id>',views.add_comment, name='add_comment'),
+
 
 
     path('user_profile/<int:id>', views.UserProfile, name='user_profile'),

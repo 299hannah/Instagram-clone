@@ -1,0 +1,21 @@
+{%block content%}
+<div class="container">
+    <div class="row">
+        {%if users%}
+        <h2>Found {{users|length}} of searched term {{message}}</h2>
+        {%else%}
+        <h2>Found 0 users for the search term {{message}}</h2>
+        {%endif%}
+    </div>
+    <div class="row">
+        {%if users%}
+        {%for user in users%}
+        <div class="col-md-6 col-md-3"></div>
+        <h1>{{user.title}}</h1>
+    </div>
+    {%endfor%}
+    {%endif%}
+
+</div>
+</div>
+{%endblock%}

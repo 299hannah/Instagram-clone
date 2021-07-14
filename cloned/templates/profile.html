@@ -342,19 +342,31 @@ img {
 		<div class="profile">
 
 			<div class="profile-image">
+                {%if profile.picture%}
+                
 
                 <img
                 src="{{profile.picture.url}}
                 "
                 alt="insta" style="width:200px; height:200px;">
+
+                {%else%}
+                
+                <img class="is-rounded" src="https://bulma.io/images/placeholders/256x256.png" />
+                {%endif%}
 			</div>
 
 			<div class="profile-user-settings">
 
-				<h1 class="profile-user-name">{{user.user}}</h1>
+				<h2 class="profile-user-name">{{user.user}}</h2>
+                <h2 class="subtitle is-3">@{{profile.nick_name}}</h2>
+                <a href="{% url 'edit-profile' %}">
+                    <button class="btn profile-edit-btn"
+                
+                >Edit Profile</button>
 
-				<button class="btn profile-edit-btn">Edit Profile</button>
-
+                </a>
+				
 				<button class="btn profile-settings-btn" aria-label="profile settings">
                     <i class="fas fa-cog" aria-hidden="true"></i></button>
 
@@ -386,7 +398,7 @@ img {
 
 			<div class="myphoto-item" tabindex="0">
 
-                <img src="{{post.image.url}}" class="myphoto-image" alt="">
+                
 
 				<div class="myphoto-item-type">
 

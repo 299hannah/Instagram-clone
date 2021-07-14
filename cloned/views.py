@@ -2,8 +2,8 @@ from django.contrib.auth.models import User
 from django.http.response import Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404, resolve_url
 from django.contrib.auth.decorators import login_required
-from .models import Follow, Post, Profile,  tags
-from .forms import NewsPostForm,RegisterForm,LoginForm,UpdateForm,ProfileUpdateForm
+from .models import Comments, Follow, Post, Profile,  tags
+from .forms import NewsPostForm,RegisterForm,LoginForm,UpdateForm,ProfileUpdateForm,EditProfileForm
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -14,7 +14,7 @@ from django.db.models.base import ObjectDoesNotExist
 
 # Create your views here.
 
-# @login_required(login_url = 'login')
+@login_required(login_url = 'login')
 
 def index(request):
  
@@ -92,10 +92,6 @@ def post_detail(request):
 
 
 
-
-
-
-
 def NewPost(request):
     current_user = request.user
     if request.method == 'POST':
@@ -152,17 +148,19 @@ def profile(request):
 
 
 
-# def search_results(request):
-#     if 'profile' in request.GET and request.GET["profile"]:
-#         search_term = request.GET.get("profile")
-#         searched_profiles = Profile.search_by_location(search_term)
-#         message = f"{search_term}"
+def search_results(request):
+    if 'user' in request.GET and request.GET["user"]:
+        search_term = request.GET.get("user")
+        searched_profiles = Profile.objects.filter(user__username__icontains=search_term).all()
 
-#         return render (request, 'search.html',{"message":message,"profiles": searched_profiles})
+        message = f"{search_term}"
+        
 
-#     else:
-#         message = "You haven't searched for any term"
-#         return render(request, 'search.html',{"message":message})
+        return render (request, 'search.html',{"message":message,"users": searched_profiles})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
 
 
 
@@ -216,6 +214,55 @@ def unfollow(request,id):
         return redirect('user_profile' ,id=user_unfollow.id)
 
 
+@login_required
+def EditProfile(request):
+    user = request.user.id
+    profile = Profile.objects.get(user__id=user)
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            profile.nick_name = form.cleaned_data.get('nick_name')
+            profile.picture = form.cleaned_data.get('image')
+            profile.profile_info = form.cleaned_data.get('profile_info')
+            profile.save()
+            return redirect('index')
+    else:
+        form = EditProfileForm()
+    context = {
+        'form':form,
+    }
+    return render(request, 'edit_profile.html', context)
+
+@login_required(login_url='/accounts/login/')
+def view_post(request,pk):
+    post = Post.objects.get(id=pk)
+    try:
+        comments = Comments.filter_comments_by_post_id(pk)
+        print(comments)
+        
+    except Comments.DoesNotExist:  
+        comments = None
+    
+    ctx = {
+        'post':post,
+        "comments":comments
+        }
+    
+    return render(request,'view_post.html',ctx)
+
+@login_required(login_url='/accounts/login/')
+def add_comment(request,post_id):
+    current_user = request.user
+    if request.method == 'POST':
+        comment= request.POST.get('comment')
+    post = Post.objects.get(id=post_id)
+    user_profile = User.objects.get(username=current_user.username)
+    Comments.objects.create(
+         comment=comment,
+         post = post,
+         user=user_profile   
+        )
+    return redirect('view_post' ,pk=post_id)
 
 
 

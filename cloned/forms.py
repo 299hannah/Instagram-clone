@@ -34,7 +34,14 @@ class ProfileUpdateForm(forms.ModelForm):
         model = Profile
         fields = ['picture','profile_info']
 
-# class CommentForm(forms.ModelForm):
+
+class EditProfileForm(forms.ModelForm):
+    picture = forms.ImageField(required=False)
+    nick_name = forms.CharField(widget=forms.TextInput(), max_length=50, required=True)
+    profile_info = forms.CharField(widget=forms.TextInput(), max_length=260, required=True)
+    class Meta:
+        model = Profile
+        fields = ('picture', 'nick_name',  'profile_info')
 
     
 
